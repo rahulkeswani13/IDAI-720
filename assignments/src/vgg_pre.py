@@ -1,7 +1,7 @@
 import tensorflow as tf
 import numpy as np
 import os
-os.environ["CUDA_VISIBLE_DEVICES"]="0" # Change the number 0 to your corresponding GPU ID in the Google Sheet
+os.environ["CUDA_VISIBLE_DEVICES"]="9" # Change the number 0 to your corresponding GPU ID in the Google Sheet
 
 # Change the following path if you are not running on CS Clusters
 weight_path = "/local/datasets/idai720/checkpoint/vgg_face_weights.h5"
@@ -147,6 +147,8 @@ class VGG_Pre:
         # Write your code below:
 
         return grad.numpy()[0]
+
+
 
 
 
