@@ -137,7 +137,9 @@ class VGG_Pre:
         # k: number of data points selected to query for oracles
         # Return the indices of top k most uncertain predictions
         # Write your code below:
-
+        pred_probs = self.decision_function(X).flatten() #pred
+        uncertainties = np.abs(pred_probs - 0.5) # abs dist from 0.5; 0,5 means max uncertainty
+        inds = np.argsort(uncertainties) #sort
         return inds[:k]
 
     # Below is for A5
