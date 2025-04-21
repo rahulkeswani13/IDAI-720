@@ -145,8 +145,20 @@ class VGG_Pre:
     # Below is for A5
     def output_grad(self, inputs):
         # inputs: tf.Variable([one input data point])
-        # Return grad: gradients from every input node to the output (numpy.array),
+        # Return grad: gradients from every input node to the output of self.decision_function(X) or self.model(X) (numpy.array),
         # Write your code below:
+        # Use GradientTape to record operations for automatic differentiation
+        with tf.GradientTape() as tape:
+            # Watch the input variable to track gradients with respect to it
+            tape.watch(inputs)
+        
+            # Get the model's prediction for this input
+            # We're finding out how the output changes with respect to the input
+            predictions = self.model(inputs)
+    
+        # Calculate gradients of the output with respect to the input
+        # This shows which parts of the input most affect the output
+        grad = tape.gradient(predictions, inputs)
 
         return grad.numpy()[0]
 
